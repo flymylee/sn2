@@ -1,0 +1,12 @@
+{
+  "name": "sn2-working-sketch",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "probe": "node --env-file-if-exists=.env scripts/probe.mjs",
+    "start": "node --env-file-if-exists=.env src/server.mjs",
+    "test": "node --test"
+  }
+}

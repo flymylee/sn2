@@ -1,0 +1,196 @@
+{
+  "input": {
+    "subjectId": "alex",
+    "people": [
+      {
+        "id": "alex",
+        "name": "Alex"
+      },
+      {
+        "id": "priya",
+        "name": "Priya"
+      },
+      {
+        "id": "sam",
+        "name": "Sam"
+      }
+    ],
+    "messages": [
+      {
+        "id": "a1",
+        "personId": "alex",
+        "room": "systems-room",
+        "text": "I am curious about what is lost when an AI compresses its conversation memory. Remembering that a conversation happened seems different from remembering what was said."
+      },
+      {
+        "id": "a2",
+        "personId": "alex",
+        "room": "systems-room",
+        "text": "I compared two cache-compression runs, then noticed that my test could not distinguish recall from a cue in the prompt. I wrote down that confound and planned a control with the cue removed."
+      },
+      {
+        "id": "a3",
+        "personId": "alex",
+        "room": "systems-room",
+        "text": "For a small API proxy I built, I traced a routing failure to how the path was forwarded. I reproduced it with a minimal request and checked the fix against the same request."
+      },
+      {
+        "id": "p1",
+        "personId": "priya",
+        "room": "learning-room",
+        "text": "I am studying the history of ceramic glazes and how firing temperatures change their colors."
+      },
+      {
+        "id": "p2",
+        "personId": "priya",
+        "room": "learning-room",
+        "text": "I am studying the history of ceramic glazes and how firing temperatures change their colors."
+      },
+      {
+        "id": "s1",
+        "personId": "sam",
+        "room": "garden-room",
+        "text": "I am comparing balcony planters for growing tomatoes. My main questions are about soil moisture and how many hours of direct sun the plants need."
+      }
+    ]
+  },
+  "result": {
+    "profiles": [
+      {
+        "personId": "alex",
+        "interests": [
+          {
+            "id": "alex-i1",
+            "label": "AI conversation memory compression loss",
+            "evidence": [
+              {
+                "messageId": "a1",
+                "quote": "what is lost when an AI compresses its conversation memory"
+              },
+              {
+                "messageId": "a1",
+                "quote": "Remembering that a conversation happened seems different from remembering what was said."
+              }
+            ]
+          }
+        ],
+        "strengths": [
+          {
+            "id": "alex-s1",
+            "label": "compared two cache-compression runs",
+            "evidence": [
+              {
+                "messageId": "a2",
+                "quote": "I compared two cache-compression runs"
+              }
+            ]
+          },
+          {
+            "id": "alex-s2",
+            "label": "documented a confound and planned a control with cue removed",
+            "evidence": [
+              {
+                "messageId": "a2",
+                "quote": "I wrote down that confound and planned a control with the cue removed."
+              }
+            ]
+          },
+          {
+            "id": "alex-s3",
+            "label": "reproduced routing failure with minimal request and checked fix",
+            "evidence": [
+              {
+                "messageId": "a3",
+                "quote": "I reproduced it with a minimal request and checked the fix against the same request."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "personId": "priya",
+        "interests": [
+          {
+            "id": "priya-i1",
+            "label": "ceramic glaze history and firing temperature effects",
+            "evidence": [
+              {
+                "messageId": "p1",
+                "quote": "I am studying the history of ceramic glazes and how firing temperatures change their colors."
+              }
+            ]
+          }
+        ],
+        "strengths": []
+      },
+      {
+        "personId": "sam",
+        "interests": [
+          {
+            "id": "sam-i1",
+            "label": "growing tomatoes in balcony planters",
+            "evidence": [
+              {
+                "messageId": "s1",
+                "quote": "I am comparing balcony planters for growing tomatoes."
+              }
+            ]
+          }
+        ],
+        "strengths": []
+      }
+    ],
+    "brief": {
+      "status": "ready",
+      "points": [
+        {
+          "text": "Alex expressed curiosity about memory compression loss and the difference between remembering that a conversation happened and remembering what was said.",
+          "claimIds": [
+            "alex-i1"
+          ]
+        },
+        {
+          "text": "Alex self-reported comparing two cache-compression runs.",
+          "claimIds": [
+            "alex-s1"
+          ]
+        },
+        {
+          "text": "Alex self-reported writing down a confound about recall versus prompt cue and planning a control with the cue removed.",
+          "claimIds": [
+            "alex-s2"
+          ]
+        },
+        {
+          "text": "Alex self-reported reproducing an API proxy routing failure with a minimal request and checking the fix against the same request.",
+          "claimIds": [
+            "alex-s3"
+          ]
+        }
+      ],
+      "limitations": [
+        "Evidence is limited to three short messages with no stated role, goals, or outcomes."
+      ]
+    },
+    "connections": [],
+    "connectionNote": "No shared intellectual question is supported; Alex's focus on AI memory compression does not overlap with Priya's ceramic glaze history or Sam's tomato planter questions.",
+    "meta": {
+      "source": "live_meta_api",
+      "responseId": "resp_6aebcd0c00bba0cd40074bc7",
+      "model": "muse-spark-1.3-contributor",
+      "usage": {
+        "input_tokens": 878,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 6472,
+        "output_tokens_details": {
+          "reasoning_tokens": 5867
+        },
+        "total_tokens": 7350
+      },
+      "generatedAt": "2026-11-05T00:25:48.280Z",
+      "latencyMs": 38687
+    }
+  }
+}

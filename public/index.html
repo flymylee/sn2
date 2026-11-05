@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SN2.0 — Let the conversation work for you</title>
+  <meta name="description" content="A working sketch: one conversation, a grounded career brief, and a reason to meet another mind.">
+  <link rel="stylesheet" href="/style.css"><script src="/app.js" type="module"></script>
+</head>
+<body>
+  <header><a class="brand" href="/">SN2<span>.0</span></a><span class="edition">A WORKING SKETCH · META HACKATHON 2026</span><span id="api-status" class="status">Checking API setup…</span></header>
+  <main>
+    <section class="intro"><p class="eyebrow">THE VALUE BELONGS TO THE PEOPLE WHO MADE IT.</p><h1>If AI reads our conversations,<br>it should work for <em>us.</em></h1><p class="lead">The same conversation can reveal how you think—and give you a reason to meet someone who asks the same questions.</p></section>
+    <section class="workspace">
+      <aside class="input-panel">
+        <div class="panel-title"><span class="step">01</span><h2>The conversation</h2></div>
+        <p class="muted">Start with a fictional example, then change the evidence.</p>
+        <label for="subject">Whose conversation should work for them?</label><select id="subject"></select>
+        <div id="input-label" class="sample-label">FICTIONAL DEMO DATA · SEPARATE ROOMS</div>
+        <div id="messages"></div>
+        <details><summary>Edit the full dataset</summary><label for="dataset">JSON: people, message IDs, rooms, and text</label><textarea id="dataset" spellcheck="false"></textarea><button id="apply" class="secondary">Apply dataset</button></details>
+        <label class="consent"><input id="consent" type="checkbox">I can use these conversations and agree to send this dataset to Meta Model API.</label>
+        <button id="analyze" class="primary">Make this conversation work <span>↗</span></button>
+        <button id="replay" class="secondary">Review a recorded real API run</button>
+        <p class="muted">Replay uses fictional input and a saved Meta response. It does not make a new API call.</p>
+        <p id="request-status" role="status" aria-live="polite">No model result yet. Nothing is pre-generated.</p>
+      </aside>
+      <section class="output-panel" aria-label="Analysis results">
+        <div class="panel-title"><span class="step">02</span><h2>Two ways it can help</h2></div>
+        <div id="error" role="alert" hidden></div>
+        <div id="empty" class="empty"><span class="empty-symbol">↗</span><h3>Good conversations should go somewhere.</h3><p>A career brief and an intellectual connection will appear here after a real API response.</p></div>
+        <div id="result" hidden>
+          <div id="provenance" class="provenance"></div>
+          <section class="result-section"><p class="eyebrow">SHARED EVIDENCE</p><h3>What the conversation supports</h3><div id="claims"></div></section>
+          <section class="result-section"><p class="eyebrow">BENEFIT 01</p><h3>A career conversation brief</h3><p class="muted">A draft based on conversation. Self-reported actions remain self-reported.</p><div id="brief"></div></section>
+          <section class="result-section"><p class="eyebrow">BENEFIT 02</p><h3>A reason to meet another mind</h3><div id="connections"></div></section>
+          <button id="download" class="secondary">Download this run</button>
+        </div>
+      </section>
+    </section>
+    <footer>One model call. Shared evidence. No automatic outreach.<span>Local demo · conversations are not stored by this app.</span></footer>
+  </main>
+</body>
+</html>

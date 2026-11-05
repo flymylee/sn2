@@ -1,0 +1,16 @@
+{
+  "subjectId": "alex",
+  "people": [
+    {"id":"alex","name":"Alex"},
+    {"id":"priya","name":"Priya"},
+    {"id":"sam","name":"Sam"}
+  ],
+  "messages": [
+    {"id":"a1","personId":"alex","room":"systems-room","text":"I am curious about what is lost when an AI compresses its conversation memory. Remembering that a conversation happened seems different from remembering what was said."},
+    {"id":"a2","personId":"alex","room":"systems-room","text":"I compared two cache-compression runs, then noticed that my test could not distinguish recall from a cue in the prompt. I wrote down that confound and planned a control with the cue removed."},
+    {"id":"a3","personId":"alex","room":"systems-room","text":"For a small API proxy I built, I traced a routing failure to how the path was forwarded. I reproduced it with a minimal request and checked the fix against the same request."},
+    {"id":"p1","personId":"priya","room":"learning-room","text":"I keep asking what an AI tutor should remember about a learner. A compressed summary may preserve a topic but lose the reason the learner was confused."},
+    {"id":"p2","personId":"priya","room":"learning-room","text":"I want to test memory summaries by removing cues and seeing whether a tutor still recovers the actual misconception. How do we separate recall from plausible reconstruction?"},
+    {"id":"s1","personId":"sam","room":"garden-room","text":"I am comparing balcony planters for growing tomatoes. My main questions are about soil moisture and how many hours of direct sun the plants need."}
+  ]
+}

@@ -1,0 +1,10 @@
+.env
+.env.*
+!.env.example
+artifacts/*
+!artifacts/.gitkeep
+node_modules/
+*.log
+SUBMISSION_FIELDS.json
+/.worklog
+/.worklog/

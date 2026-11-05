@@ -1,0 +1,232 @@
+{
+  "input": {
+    "subjectId": "alex",
+    "people": [
+      {
+        "id": "alex",
+        "name": "Alex"
+      },
+      {
+        "id": "priya",
+        "name": "Priya"
+      },
+      {
+        "id": "sam",
+        "name": "Sam"
+      }
+    ],
+    "messages": [
+      {
+        "id": "a1",
+        "personId": "alex",
+        "room": "systems-room",
+        "text": "I am curious about what is lost when an AI compresses its conversation memory. Remembering that a conversation happened seems different from remembering what was said."
+      },
+      {
+        "id": "a2",
+        "personId": "alex",
+        "room": "systems-room",
+        "text": "I compared two cache-compression runs, then noticed that my test could not distinguish recall from a cue in the prompt. I wrote down that confound and planned a control with the cue removed."
+      },
+      {
+        "id": "a3",
+        "personId": "alex",
+        "room": "systems-room",
+        "text": "For a small API proxy I built, I traced a routing failure to how the path was forwarded. I reproduced it with a minimal request and checked the fix against the same request."
+      },
+      {
+        "id": "p1",
+        "personId": "priya",
+        "room": "learning-room",
+        "text": "I keep asking what an AI tutor should remember about a learner. A compressed summary may preserve a topic but lose the reason the learner was confused."
+      },
+      {
+        "id": "p2",
+        "personId": "priya",
+        "room": "learning-room",
+        "text": "I want to test memory summaries by removing cues and seeing whether a tutor still recovers the actual misconception. How do we separate recall from plausible reconstruction?"
+      },
+      {
+        "id": "s1",
+        "personId": "sam",
+        "room": "garden-room",
+        "text": "I am comparing balcony planters for growing tomatoes. My main questions are about soil moisture and how many hours of direct sun the plants need."
+      }
+    ]
+  },
+  "result": {
+    "profiles": [
+      {
+        "personId": "alex",
+        "interests": [
+          {
+            "id": "alex-interest-1",
+            "label": "what is lost when AI compresses conversation memory",
+            "evidence": [
+              {
+                "messageId": "a1",
+                "quote": "what is lost when an AI compresses its conversation memory"
+              },
+              {
+                "messageId": "a1",
+                "quote": "Remembering that a conversation happened seems different from remembering what was said."
+              }
+            ]
+          },
+          {
+            "id": "alex-interest-2",
+            "label": "distinguishing recall from prompted cues",
+            "evidence": [
+              {
+                "messageId": "a2",
+                "quote": "my test could not distinguish recall from a cue in the prompt"
+              }
+            ]
+          }
+        ],
+        "strengths": [
+          {
+            "id": "alex-strength-1",
+            "label": "compared compression runs and planned control after noting confound",
+            "evidence": [
+              {
+                "messageId": "a2",
+                "quote": "I compared two cache-compression runs"
+              },
+              {
+                "messageId": "a2",
+                "quote": "I wrote down that confound and planned a control with the cue removed."
+              }
+            ]
+          },
+          {
+            "id": "alex-strength-2",
+            "label": "traced API proxy routing failure and checked fix with minimal request",
+            "evidence": [
+              {
+                "messageId": "a3",
+                "quote": "I traced a routing failure to how the path was forwarded."
+              },
+              {
+                "messageId": "a3",
+                "quote": "I reproduced it with a minimal request and checked the fix against the same request."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "personId": "priya",
+        "interests": [
+          {
+            "id": "priya-interest-1",
+            "label": "what AI tutor should remember about learner confusion",
+            "evidence": [
+              {
+                "messageId": "p1",
+                "quote": "what an AI tutor should remember about a learner"
+              },
+              {
+                "messageId": "p1",
+                "quote": "A compressed summary may preserve a topic but lose the reason the learner was confused."
+              }
+            ]
+          },
+          {
+            "id": "priya-interest-2",
+            "label": "testing memory summaries by removing cues to separate recall from reconstruction",
+            "evidence": [
+              {
+                "messageId": "p2",
+                "quote": "I want to test memory summaries by removing cues and seeing whether a tutor still recovers the actual misconception."
+              },
+              {
+                "messageId": "p2",
+                "quote": "How do we separate recall from plausible reconstruction?"
+              }
+            ]
+          }
+        ],
+        "strengths": []
+      },
+      {
+        "personId": "sam",
+        "interests": [
+          {
+            "id": "sam-interest-1",
+            "label": "balcony tomato growing conditions",
+            "evidence": [
+              {
+                "messageId": "s1",
+                "quote": "My main questions are about soil moisture and how many hours of direct sun the plants need."
+              }
+            ]
+          }
+        ],
+        "strengths": []
+      }
+    ],
+    "brief": {
+      "status": "ready",
+      "points": [
+        {
+          "text": "Alex expressed curiosity about what is lost when AI compresses conversation memory, distinguishing occurrence from content.",
+          "claimIds": [
+            "alex-interest-1"
+          ]
+        },
+        {
+          "text": "Alex self-reported comparing two cache-compression runs and planning a control with the cue removed after noting a confound about recall versus cue.",
+          "claimIds": [
+            "alex-strength-1",
+            "alex-interest-2"
+          ]
+        },
+        {
+          "text": "Alex self-reported tracing an API proxy routing failure and checking the fix with a minimal request.",
+          "claimIds": [
+            "alex-strength-2"
+          ]
+        }
+      ],
+      "limitations": [
+        "No evidence of longer-term outcomes or context beyond these messages.",
+        "No evidence of formal results for the planned control test."
+      ]
+    },
+    "connections": [
+      {
+        "personId": "priya",
+        "subjectInterestIds": [
+          "alex-interest-1",
+          "alex-interest-2"
+        ],
+        "candidateInterestIds": [
+          "priya-interest-1",
+          "priya-interest-2"
+        ],
+        "sharedQuestion": "What does compressed AI memory preserve versus lose, and how can genuine recall be distinguished from cued reconstruction?",
+        "openingQuestion": "How would you design a cue-removed test to tell whether a summary preserves the reason for confusion rather than just the topic?"
+      }
+    ],
+    "connectionNote": "Connection is based only on quoted messages about compressed memory and cue-removed testing; Sam's messages about tomatoes show no overlapping intellectual question, so no connection is proposed for Sam.",
+    "meta": {
+      "source": "live_meta_api",
+      "responseId": "resp_6aebcc95afa25827fbe04949",
+      "model": "muse-spark-1.3-contributor",
+      "usage": {
+        "input_tokens": 904,
+        "input_tokens_details": {
+          "cached_tokens": 0
+        },
+        "output_tokens": 7362,
+        "output_tokens_details": {
+          "reasoning_tokens": 6270
+        },
+        "total_tokens": 8266
+      },
+      "generatedAt": "2026-11-05T00:23:49.259Z",
+      "latencyMs": 36718
+    }
+  }
+}
