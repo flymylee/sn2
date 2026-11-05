@@ -7,6 +7,8 @@ This local prototype uses a real Meta Model API call to produce two benefits fro
 - A career conversation brief, with references to the subject's own messages.
 - Intellectual-interest connections across rooms, with evidence from both people and a suggested opening question.
 
+[Watch the captioned recorded-run demo](public/demo.webm) (1:59.6, silent). It visualizes real saved API runs with fictional data; it is not a screen recording or a new live request. Run locally and open `/watch.html` for playback or `/?recorded=1` to inspect the evidence interactively.
+
 No account system, automatic outreach, model training, or real-world employment decisions. The included conversations are fictional demo data, not real users or validation of matching accuracy.
 
 ## Run locally
@@ -36,6 +38,12 @@ Only the explicitly allowed files in `public/` are served. `.env` stays outside 
 ## Validation
 
 Run `npm test` for evidence-validation regression checks. Live API verification is a separate `npm run probe` step; tests do not establish API access.
+
+Live synthetic controls on 2026-11-04 ET produced an Alex brief and Priya connection, no connection after Priya's topic changed to ceramic glazes, and `insufficient_evidence` with no connection when Alex only said “Hi.” See `examples/`. The live HTTP route and browser result rendering, evidence expansion, and clearing after input edits were also checked. These are small workflow checks, not accuracy benchmarks.
+
+## Demo video
+
+`http://127.0.0.1:3210/video.html` can export a silent, captioned, two-minute visualization of the saved real runs. It labels the content as recorded, fictional-data runs throughout. It is not a screen recording and does not make an inference request. Exported files are saved locally in ignored `artifacts/`; the fixed local artifact route accepts only same-origin PNG/WebM files up to 20 MB.
 
 Official request format: [Meta quickstart](https://dev.meta.ai/docs/quickstart).
 

@@ -1,5 +1,5 @@
 import http from 'node:http';
-import { readFile } from 'node:fs/promises';
+import { readFile, mkdir, writeFile } from 'node:fs/promises';
 import { configuration, MetaError } from './meta.mjs';
 import { analyze } from './analyze.mjs';
 
@@ -10,6 +10,11 @@ const files = new Map([
   ['/style.css', ['style.css','text/css; charset=utf-8']],
   ['/sample.json', ['sample.json','application/json; charset=utf-8']],
   ['/recorded-run.json', ['recorded-run.json','application/json; charset=utf-8']],
+  ['/recorded-controls.json', ['recorded-controls.json','application/json; charset=utf-8']],
+  ['/video.html', ['video.html','text/html; charset=utf-8']],
+  ['/video.js', ['video.js','text/javascript; charset=utf-8']],
+  ['/demo.webm', ['demo.webm','video/webm']],
+  ['/watch.html', ['watch.html','text/html; charset=utf-8']],
 ]);
 let busy = false;
 function send(res,status,body,type='application/json; charset=utf-8') {
@@ -33,6 +38,21 @@ const server = http.createServer(async(req,res)=>{
     if (!allowedHosts.has(req.headers.host)) return send(res,403,{error:'Local access only.'});
     const path = new URL(req.url,'http://localhost').pathname;
     if(req.method==='GET' && path==='/api/status') return send(res,200,{...configuration(),mode:'local'});
+    if(req.method==='POST' && path==='/api/demo-artifact') {
+      if(![`http://localhost:${port}`,`http://127.0.0.1:${port}`].includes(req.headers.origin)) return send(res,403,{error:'Origin not allowed.'});
+      const name={'image/png':'storyboard.png','video/webm':'recorded-demo.webm'}[req.headers['content-type']];
+      if(!name) return send(res,415,{error:'Only PNG or WebM demo artifacts are accepted.'});
+      const chunks=[];let size=0;
+      for await(const chunk of req){size+=chunk.length;if(size>20000000)throw new MetaError('Artifact is too large.','ARTIFACT_SIZE',413);chunks.push(chunk);}
+      const data=Buffer.concat(chunks);
+      const png=data.subarray(0,8).equals(Buffer.from([137,80,78,71,13,10,26,10]));
+      const webm=data.subarray(0,4).equals(Buffer.from([26,69,223,163]));
+      if((name.endsWith('.png') && !png) || (name.endsWith('.webm') && !webm)) return send(res,400,{error:'Artifact signature does not match its type.'});
+      const directory=new URL('../artifacts/',import.meta.url);
+      await mkdir(directory,{recursive:true});
+      await writeFile(new URL(name,directory),data,{mode:0o600});
+      return send(res,200,{saved:`artifacts/${name}`,bytes:size});
+    }
     if(req.method==='POST' && path==='/api/analyze') {
       const origin=req.headers.origin;
       if(origin && ![`http://localhost:${port}`,`http://127.0.0.1:${port}`].includes(origin)) return send(res,403,{error:'Origin not allowed.'});
