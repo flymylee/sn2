@@ -86,7 +86,7 @@ $('apply').addEventListener('click',()=>{
   } catch(error) { $('error').textContent=error.message; $('error').hidden=false; }
 });
 $('consent').addEventListener('change',refreshButton);
-$('replay').addEventListener('click',async()=>{
+async function replayRecordedRun() {
   if(running) return;
   try {
     const response=await fetch('/recorded-run.json');
@@ -98,7 +98,8 @@ $('replay').addEventListener('click',async()=>{
     render(run.result,run.input,{recorded:true});
     $('request-status').textContent='Showing a recorded real API response. No new request was made. Edit the input and generate to run it live.';
   } catch(error) { $('error').textContent=error.message; $('error').hidden=false; }
-});
+}
+$('replay').addEventListener('click',replayRecordedRun);
 $('analyze').addEventListener('click',async()=>{
   if(running || dirty || !$('consent').checked) return;
   invalidate('Sending this dataset to Meta. Waiting for a real model response…');
@@ -125,8 +126,12 @@ $('download').addEventListener('click',()=>{
   const link=node('a');link.href=url;link.download='sn2-live-run.json';link.click();URL.revokeObjectURL(url);
 });
 try {
-  const [input,status]=await Promise.all([fetch('/sample.json').then(r=>r.json()),fetch('/api/status').then(r=>r.json())]);
+  const [input,status]=await Promise.all([
+    fetch('/sample.json').then(r=>r.json()),
+    fetch('/api/status').then(r=>r.ok ? r.json() : {configured:false}).catch(()=>({configured:false})),
+  ]);
   dataset=input; configured=status.configured;
   $('api-status').textContent=configured ? `${status.model} · Key configured` : 'Live generation needs an API key · recorded run available';
   displayInput();
+  if(new URLSearchParams(location.search).get('recorded')==='1') await replayRecordedRun();
 } catch { $('api-status').textContent='Local server unavailable'; refreshButton(); }
